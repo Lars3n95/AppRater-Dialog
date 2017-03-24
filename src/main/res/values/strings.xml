@@ -12,4 +12,9 @@
     <string name="star_rate_button_text">Confirm</string>
     <string name="star_not_now_button_text">Ask me later</string>
     <string name="star_never_button_text">No, sorry</string>
+
+    <string name="star_title_improve_app">Any suggestions?</string>
+    <string name="star_message_improve_app">We want to improve the App with your help. Do you want to send an email with your suggestions?</string>
+    <string name="star_mail_improve_app">Yes</string>
+    <string name="star_cancel_improve_app">No</string>
 </resources>

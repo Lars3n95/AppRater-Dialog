@@ -1,16 +1,13 @@
 package com.kila.apprater_dialog.lars;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RatingBar;
-import android.widget.Toast;
 
 public class AppRaterDialog extends AlertDialog {
 
@@ -21,29 +18,18 @@ public class AppRaterDialog extends AlertDialog {
     public static class Builder extends AlertDialog.Builder {
         private final Context context;
         private RatingBar ratingBar;
+        private String packageName;
+        private int minimumNumberOfStars;
+        private String email;
 
         public Builder(Context context) {
             super(context);
             this.context = context;
         }
 
-        public AlertDialog.Builder setPositiveButton(String rateButtonText, final String packageName, final int minimumNumberOfStars) {
-            this.setPositiveButton(rateButtonText, new OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    if (ratingBar != null) {
-                        if (ratingBar.getRating() >= minimumNumberOfStars) {
-                            openPlayStore(packageName);
-                        }
-                    }
-                    new ConditionManager(context).dontShowDialogAgain();
-                }
-            });
+        public AlertDialog.Builder setPositiveButton(String rateButtonText) {
+            this.setPositiveButton(rateButtonText, new RateClickListener());
             return this;
-        }
-
-        private void openPlayStore(String packageName) {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName)));
         }
 
         public void setNeutralButton(String notNowButtonText) {
@@ -64,10 +50,66 @@ public class AppRaterDialog extends AlertDialog {
             });
         }
 
+        public void setMinimumNumberOfStars(int minimumNumberOfStars) {
+            this.minimumNumberOfStars = minimumNumberOfStars;
+        }
+
         public void showStars() {
             View view = LayoutInflater.from(context).inflate(R.layout.layout_with_stars, null);
             ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
             this.setView(view);
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public void setPackageName(String packageName) {
+            this.packageName = packageName;
+        }
+
+        private class RateClickListener implements OnClickListener {
+
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (ratingBar != null) {
+                    if (ratingBar.getRating() >= minimumNumberOfStars) {
+                        openPlayStore(packageName);
+                    } else {
+                        if(email != null) {
+                            new AlertDialog.Builder(context)
+                                    .setTitle(R.string.star_title_improve_app)
+                                    .setMessage(R.string.star_message_improve_app)
+                                    .setPositiveButton(R.string.star_mail_improve_app, new OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            openEmailApp();
+                                        }
+                                    })
+                                    .setNegativeButton(R.string.star_cancel_improve_app, new OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                        }
+                                    }).show();
+                        }
+                    }
+                } else {
+                    openPlayStore(packageName);
+                }
+                new ConditionManager(context).dontShowDialogAgain();
+            }
+
+            private void openEmailApp() {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("message/rfc822");
+                intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {email});
+                Intent mailer = Intent.createChooser(intent, null);
+                context.startActivity(mailer);
+            }
+
+            private void openPlayStore(String packageName) {
+                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName)));
+            }
         }
     }
 }

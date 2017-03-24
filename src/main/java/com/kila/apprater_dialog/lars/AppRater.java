@@ -114,7 +114,7 @@ public class AppRater {
             if (message != null)
                 builder.setMessage(message);
             if (rateButtonText != null)
-                builder.setPositiveButton(rateButtonText, packageName, 0);
+                builder.setPositiveButton(rateButtonText);
             if (notNowButtonText != null)
                 builder.setNeutralButton(notNowButtonText);
             if (neverButtonText != null)
@@ -126,6 +126,7 @@ public class AppRater {
     public static class StarBuilder extends DefaultBuilder {
         private boolean showStars = true;
         private int minimumNumberOfStars;
+        private String email;
 
         public StarBuilder(Context context, String packageName) {
             super(context, packageName);
@@ -139,6 +140,7 @@ public class AppRater {
             rateButton(context.getString(R.string.star_rate_button_text));
             notNowButton(context.getString(R.string.star_not_now_button_text));
             neverButton(context.getString(R.string.star_never_button_text));
+            minimumNumberOfStars(4);
             return this;
         }
 
@@ -147,21 +149,31 @@ public class AppRater {
             return this;
         }
 
+        public StarBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+
         @Override
         protected AppRaterDialog.Builder buildAppRaterDialog() {
             AppRaterDialog.Builder builder = new AppRaterDialog.Builder(context);
+            builder.setPackageName(packageName);
             if (title != null)
                 builder.setTitle(title);
             if (message != null)
                 builder.setMessage(message);
             if(rateButtonText != null)
-                builder.setPositiveButton(rateButtonText, packageName, minimumNumberOfStars);
+                builder.setPositiveButton(rateButtonText);
             if (notNowButtonText != null)
                 builder.setNeutralButton(notNowButtonText);
             if (neverButtonText != null)
                 builder.setNegativeButton(neverButtonText);
+            if(minimumNumberOfStars != 0)
+                builder.setMinimumNumberOfStars(minimumNumberOfStars);
             if(showStars)
                 builder.showStars();
+            if(email != null)
+                builder.setEmail(email);
             return builder;
         }
     }
