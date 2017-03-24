@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">AppRater-Dialog</string>
+
     <string name="default_title">Rate App</string>
     <string name="default_message">If you enjoy using this App, please take a moment to rate it.\nThanks for your support!</string>
     <string name="default_rate_button_text">Rate</string>
-    <string name="default_not_now_button_text">Not now</string>
+    <string name="default_not_now_button_text">Later</string>
     <string name="default_never_button_text">No, sorry</string>
+
+    <string name="star_title">Rate App</string>
+    <string name="star_message">Do you have one moment?\nHow much do you like this App?</string>
+    <string name="star_rate_button_text">Confirm</string>
+    <string name="star_not_now_button_text">Ask me later</string>
+    <string name="star_never_button_text">No, sorry</string>
 </resources>

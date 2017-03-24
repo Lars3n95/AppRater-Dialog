@@ -1,6 +1,8 @@
 package com.kila.apprater_dialog.lars;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.widget.RatingBar;
 
 import com.kila.apprater_dialog.lars.utils.Const;
 
@@ -11,25 +13,25 @@ public class AppRater {
      */
     private static final String TAG = AppRater.class.getCanonicalName();
 
-    public static class Builder {
-        private final Context context;
-        private final String packageName;
+    public static class DefaultBuilder {
+        protected final Context context;
+        protected final String packageName;
 
-        private int daysToWait;
-        private int timesToLaunch;
-        private String title;
-        private String message;
-        private String rateButtonText;
-        private String notNowButtonText;
-        private String neverButtonText;
-        private int timesToLaunchInterval;
+        protected int daysToWait;
+        protected int timesToLaunch;
+        protected String title;
+        protected String message;
+        protected String rateButtonText;
+        protected String notNowButtonText;
+        protected String neverButtonText;
+        protected int timesToLaunchInterval;
 
-        public Builder(Context context, String packageName) {
+        public DefaultBuilder(Context context, String packageName) {
             this.context = context;
             this.packageName = packageName;
         }
 
-        public Builder showDefault() {
+        public DefaultBuilder showDefault() {
             daysToWait(Const.DEFAULT_DAYS_TO_WAIT);
             timesToLaunch(Const.DEFAULT_TIMES_TO_LAUNCH);
             title(context.getString(R.string.default_title));
@@ -41,42 +43,42 @@ public class AppRater {
             return this;
         }
 
-        public Builder daysToWait(int daysToWait) {
+        public DefaultBuilder daysToWait(int daysToWait) {
             this.daysToWait = daysToWait;
             return this;
         }
 
-        public Builder timesToLaunch(int timesToLaunch) {
+        public DefaultBuilder timesToLaunch(int timesToLaunch) {
             this.timesToLaunch = timesToLaunch;
             return this;
         }
 
-        public Builder title(String title) {
+        public DefaultBuilder title(String title) {
             this.title = title;
             return this;
         }
 
-        public Builder message(String message) {
+        public DefaultBuilder message(String message) {
             this.message = message;
             return this;
         }
 
-        public Builder rateButton(String rateButtonText) {
+        public DefaultBuilder rateButton(String rateButtonText) {
             this.rateButtonText = rateButtonText;
             return this;
         }
 
-        public Builder notNowButton(String notNowButtonText) {
+        public DefaultBuilder notNowButton(String notNowButtonText) {
             this.notNowButtonText = notNowButtonText;
             return this;
         }
 
-        public Builder neverButton(String neverButtonText) {
+        public DefaultBuilder neverButton(String neverButtonText) {
             this.neverButtonText = neverButtonText;
             return this;
         }
 
-        public Builder timesToLaunchInterval(int timesToLaunchInterval) {
+        public DefaultBuilder timesToLaunchInterval(int timesToLaunchInterval) {
             this.timesToLaunchInterval = timesToLaunchInterval;
             return this;
         }
@@ -98,23 +100,68 @@ public class AppRater {
             }
         }
 
-        private void showAppRaterDialog() {
+        protected AlertDialog showAppRaterDialog() {
             AppRaterDialog.Builder builder = buildAppRaterDialog();
+            AlertDialog dialog = builder.create();
             builder.show();
+            return dialog;
         }
 
-        private AppRaterDialog.Builder buildAppRaterDialog() {
+        protected AppRaterDialog.Builder buildAppRaterDialog() {
             AppRaterDialog.Builder builder = new AppRaterDialog.Builder(context);
             if (title != null)
                 builder.setTitle(title);
             if (message != null)
                 builder.setMessage(message);
             if (rateButtonText != null)
-                builder.setPositiveButton(rateButtonText, packageName);
+                builder.setPositiveButton(rateButtonText, packageName, 0);
             if (notNowButtonText != null)
                 builder.setNeutralButton(notNowButtonText);
             if (neverButtonText != null)
                 builder.setNegativeButton(neverButtonText);
+            return builder;
+        }
+    }
+
+    public static class StarBuilder extends DefaultBuilder {
+        private boolean showStars = true;
+        private int minimumNumberOfStars;
+
+        public StarBuilder(Context context, String packageName) {
+            super(context, packageName);
+        }
+
+        @Override
+        public StarBuilder showDefault() {
+            super.showDefault();
+            title(context.getString(R.string.star_title));
+            message(context.getString(R.string.star_message));
+            rateButton(context.getString(R.string.star_rate_button_text));
+            notNowButton(context.getString(R.string.star_not_now_button_text));
+            neverButton(context.getString(R.string.star_never_button_text));
+            return this;
+        }
+
+        public StarBuilder minimumNumberOfStars(int minimumNumberOfStars) {
+            this.minimumNumberOfStars = minimumNumberOfStars;
+            return this;
+        }
+
+        @Override
+        protected AppRaterDialog.Builder buildAppRaterDialog() {
+            AppRaterDialog.Builder builder = new AppRaterDialog.Builder(context);
+            if (title != null)
+                builder.setTitle(title);
+            if (message != null)
+                builder.setMessage(message);
+            if(rateButtonText != null)
+                builder.setPositiveButton(rateButtonText, packageName, minimumNumberOfStars);
+            if (notNowButtonText != null)
+                builder.setNeutralButton(notNowButtonText);
+            if (neverButtonText != null)
+                builder.setNegativeButton(neverButtonText);
+            if(showStars)
+                builder.showStars();
             return builder;
         }
     }
