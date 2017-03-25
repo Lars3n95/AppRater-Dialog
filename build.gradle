@@ -1,5 +1,29 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'apprater-dialog'
+
+    publishedGroupId = 'com.kila.apprater_dialog.lars'
+    libraryName = 'apprater-dialog'
+    artifact = 'apprater-dialog'
+
+    libraryDescription = 'A dialog which asks the user to rate the app'
+
+    siteUrl = 'https://github.com/Lars3n95/AppRater-Dialog'
+    gitUrl = 'https://github.com/Lars3n95/AppRater-Dialog.git'
+
+    libraryVersion = '1.0.5'
+
+    developerId = 'lars3n95'
+    developerName = 'Lars'
+    developerEmail = 'kilaapps@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
@@ -21,6 +45,16 @@ android {
     }
 }
 
+buildscript {
+    repositories{
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -29,3 +63,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.1'
     testCompile 'junit:junit:4.12'
 }
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
