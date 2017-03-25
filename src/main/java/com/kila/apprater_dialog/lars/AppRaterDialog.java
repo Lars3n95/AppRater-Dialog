@@ -100,7 +100,8 @@ public class AppRaterDialog extends AlertDialog {
             }
 
             private void openEmailApp() {
-                Intent intent = new Intent(Intent.ACTION_SEND);
+                Intent intent = new Intent(Intent.ACTION_SEND, Uri.fromParts(
+                        "mailto",email, null));
                 intent.setType("message/rfc822");
                 intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {email});
                 Intent mailer = Intent.createChooser(intent, null);
