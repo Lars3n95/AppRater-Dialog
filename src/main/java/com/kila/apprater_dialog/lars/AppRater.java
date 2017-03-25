@@ -24,7 +24,7 @@ public class AppRater {
         protected String rateButtonText;
         protected String notNowButtonText;
         protected String neverButtonText;
-        protected int timesToLaunchInterval;
+        protected int timesToLaunchInterval = 1;
 
         public DefaultBuilder(Context context, String packageName) {
             this.context = context;
@@ -140,7 +140,7 @@ public class AppRater {
             rateButton(context.getString(R.string.star_rate_button_text));
             notNowButton(context.getString(R.string.star_not_now_button_text));
             neverButton(context.getString(R.string.star_never_button_text));
-            minimumNumberOfStars(4);
+            minimumNumberOfStars(3);
             return this;
         }
 
