@@ -36,30 +36,38 @@ If you just want to default texts and buttons like in the third picture above us
 With this settings the dialog will be shown if the following conditions are fulfilled: The app is installed for a minimum of 3 days and the app is launched for a minimum of 5 times. Furthermore the dialog will be shown every second launch if the user clicks `Later`. If the rate or never button is clicked once, the dialog will never be shown again. This cannot be changed with the API and it is not recommendet to change this.
 
 Between the constructor and the `appLaunched()` you can customize the dialog. You following possibilities:
+
 + change the number of days, the app has to be installed
 
-    .daysToWait(int daysToWait)
+      .daysToWait(int daysToWait)
+
 + change the number of launches, the app has to be launched
 
-    .timesToLaunch(int timesToLaunch)
+      .timesToLaunch(int timesToLaunch)
+
 + change the title
 
-    .title(String title)
+      .title(String title)
+
 + change the message
 
-    .message(String message)
+      .message(String message)
+    
 + change the rate button's text
 
-    .rateButton(String rateButtonText)
+      .rateButton(String rateButtonText)
+    
 + change the not now button's text
 
-    .notNowButton(String nowNowButtonText)
+      .notNowButton(String nowNowButtonText)
+    
 + change the never button's text
 
-    .neverButton(String neverButtonText)
+      .neverButton(String neverButtonText)
+    
 + change the number of launches, the app has to be launched after a `Later` till the dialog is shown again
 
-    .timesToLaunchInterval(int timesToLaunchInterval)
+      .timesToLaunchInterval(int timesToLaunchInterval)
     
 Here is an example of how to create a customized dialog:
 
@@ -86,12 +94,14 @@ First all settings are set to default. The I overwrite so me of them. I want to 
 With this Builder you can build the dialog with the stars. You can change the texts, you can choose which buttons should be displayed, you can choose when the dialog should be shown, you can choose the minimum number of stars which have to be selected to redirect to the PlayStore and you can choose if they can email you if the rating is not good enough. 
 
 Use the `showDefault()` again to show the default dialog displayed in the first picture above. Next to the things you can customize at the DefaultBuilder you can customize following things:
+
 + change the minimum number of selected stars. If the user gives a rating matching your minimum number of stars he will be redirected to the PlayStore (default is 3)
 
-    .minimumNumberOfStars(int minimumNumberOfStars)
+      .minimumNumberOfStars(int minimumNumberOfStars)
+        
 + set an email address. If the user does not select enough stars he will be asked to send an email with suggestions (second picture above) if you set an email address. Without email address the dialog just will be dismissed if the rating is not high enough
     
-    .email(String email)
+      .email(String email)
     
 You only can use `.minimumNumberOfStars()` and `.email` after the constructor or `showDefault()`. It is not possible to set it after `.title()` or something. If you have a suggestion how to change this please tell me.
     
@@ -115,6 +125,7 @@ This time I am happy with the default settings. I just want the user to select a
 
 ## Recommendation
 Following things are highly recommendet to not annoy the user, whic might produce negative ratings:
+
 + don't show the dialog immediately after install (set daysToWait and timesToLaunch to a minimum of 1 or use showDefault())
 + don't hide the never button. If the user does not want to rate the app it is his decision, not yours. Don't force him ;)
 + set the title or message adapted to your app name. This will make it look and sound better
