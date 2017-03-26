@@ -12,6 +12,13 @@ You can show customized dialogs to the user. Here are some examples:
 
 ## How to use this library?
 
+### Gradle
+You can include the library via Gradle with the following dependencie:
+
+     compile 'com.kila.apprater_dialog.lars:apprater-dialog:1.0.5'
+
+### Builder
+
 This library has two Builder with which you can build the AppRater-dialog.
 
 #### DefaultBuilder
