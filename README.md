@@ -5,6 +5,7 @@ An Android library providing the possibility to show a dialog, which asks the us
 ## What can you do with this library?
 
 You can show customized dialogs to the user. Here are some examples:
+
 ![StarBuilder](http://imgur.com/XibDGKL.png?2 "StarBuilder")   
 ![StarBuilderMail](http://imgur.com/xbOUrud.png?2 "StarBuilderMail")   
 ![DefaultBuilder](http://imgur.com/X38eGJ6.png?2 "DefaultBuilder")
