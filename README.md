@@ -1,5 +1,7 @@
 # AppRater-Dialog
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppRater--Dialog-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5449)
+
 An Android library providing the possibility to show a dialog, which asks the user to rate the app.
 
 ## What can you do with this library?
