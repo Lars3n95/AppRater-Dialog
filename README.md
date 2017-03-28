@@ -1,6 +1,7 @@
 # AppRater-Dialog
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppRater--Dialog-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5449)
+[![Download](https://api.bintray.com/packages/lars3n95/maven/apprater-dialog/images/download.svg)](https://bintray.com/lars3n95/maven/apprater-dialog/1.0.6)
 
 An Android library providing the possibility to show a dialog, which asks the user to rate the app.
 
@@ -22,7 +23,7 @@ You can include the library via Gradle with the following dependencie:
 
 ### Builder
 
-This library has two Builder with which you can build the AppRater-dialog. Both have the method `appLaunched()`. Call this when you want the dialog to be shown (recommended: in onCreate()). Take a look at the examples below.
+This library has two Builder with which you can build the AppRater-dialog. Both have the method `appLaunched()`. Call this when you want the dialog to be shown (recommended: in `onCreate()`). Take a look at the examples below.
 
 #### DefaultBuilder
 With this Builder you can build the default dialog with text only. You can change the texts, you can choose which buttons should be displayed, you can change the texts of the buttons and you can choose when the dialog should be shown.
