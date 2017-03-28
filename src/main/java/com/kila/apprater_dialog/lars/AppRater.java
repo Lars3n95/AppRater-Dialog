@@ -2,7 +2,6 @@ package com.kila.apprater_dialog.lars;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.widget.RatingBar;
 
 import com.kila.apprater_dialog.lars.utils.Const;
 
@@ -25,6 +24,7 @@ public class AppRater {
         protected String notNowButtonText;
         protected String neverButtonText;
         protected int timesToLaunchInterval = 1;
+        protected boolean cancelable;
 
         public DefaultBuilder(Context context, String packageName) {
             this.context = context;
@@ -39,7 +39,8 @@ public class AppRater {
             rateButton(context.getString(R.string.default_rate_button_text));
             notNowButton(context.getString(R.string.default_not_now_button_text));
             neverButton(context.getString(R.string.default_never_button_text));
-            timesToLaunchInterval(2);
+            timesToLaunchInterval(Const.DEFAULT_TIMES_TO_LAUNCH_INTERVAL);
+            isCancelable(true);
             return this;
         }
 
@@ -83,6 +84,11 @@ public class AppRater {
             return this;
         }
 
+        public DefaultBuilder isCancelable(boolean cancelable) {
+            this.cancelable = cancelable;
+            return this;
+        }
+
         /**
          * Call this when the App get started (onCreate in MainActivity e.g)
          *
@@ -119,6 +125,7 @@ public class AppRater {
                 builder.setNeutralButton(notNowButtonText);
             if (neverButtonText != null)
                 builder.setNegativeButton(neverButtonText);
+            builder.setCancelable(cancelable);
             return builder;
         }
     }
@@ -140,7 +147,7 @@ public class AppRater {
             rateButton(context.getString(R.string.star_rate_button_text));
             notNowButton(context.getString(R.string.star_not_now_button_text));
             neverButton(context.getString(R.string.star_never_button_text));
-            minimumNumberOfStars(3);
+            minimumNumberOfStars(Const.DEFAULT_MINIMUM_NUMBER_OF_STARS);
             return this;
         }
 
@@ -162,18 +169,19 @@ public class AppRater {
                 builder.setTitle(title);
             if (message != null)
                 builder.setMessage(message);
-            if(rateButtonText != null)
+            if (rateButtonText != null)
                 builder.setPositiveButton(rateButtonText);
             if (notNowButtonText != null)
                 builder.setNeutralButton(notNowButtonText);
             if (neverButtonText != null)
                 builder.setNegativeButton(neverButtonText);
-            if(minimumNumberOfStars != 0)
+            if (minimumNumberOfStars != 0)
                 builder.setMinimumNumberOfStars(minimumNumberOfStars);
-            if(showStars)
+            if (showStars)
                 builder.showStars();
-            if(email != null)
+            if (email != null)
                 builder.setEmail(email);
+            builder.setCancelable(cancelable);
             return builder;
         }
     }

@@ -35,39 +35,43 @@ If you just want to default texts and buttons like in the third picture above us
     
 With this settings the dialog will be shown if the following conditions are fulfilled: The app is installed for a minimum of 3 days and the app is launched for a minimum of 5 times. Furthermore the dialog will be shown every second launch if the user clicks `Later`. If the rate or never button is clicked once, the dialog will never be shown again. This cannot be changed with the API and it is not recommendet to change this.
 
-Between the constructor and the `appLaunched()` you can customize the dialog. You following possibilities:
+Between the constructor and the `appLaunched()` you can customize the dialog. You have following possibilities:
 
-+ change the number of days, the app has to be installed
++ change the number of days, the app has to be installed (default: 3 days)
 
       .daysToWait(int daysToWait)
 
-+ change the number of launches, the app has to be launched
++ change the number of launches, the app has to be launched (default: 5 launches)
 
       .timesToLaunch(int timesToLaunch)
 
-+ change the title
++ change the title (default: see pictures above)
 
       .title(String title)
 
-+ change the message
++ change the message (default: see pictures above)
 
       .message(String message)
     
-+ change the rate button's text
++ change the rate button's text (default: see pictures above)
 
       .rateButton(String rateButtonText)
     
-+ change the not now button's text
++ change the not now button's text (default: see pictures above)
 
       .notNowButton(String nowNowButtonText)
     
-+ change the never button's text
++ change the never button's text (default: see pictures above)
 
       .neverButton(String neverButtonText)
     
-+ change the number of launches, the app has to be launched after a `Later` till the dialog is shown again
++ change the number of launches, the app has to be launched after a `Later` till the dialog is shown again (default: 2 launches)
 
       .timesToLaunchInterval(int timesToLaunchInterval)
+    
++ choose if the dialog should be cancelable (by clicking outside or clicking back button) (default: true)
+
+      .isCancelable(boolean cancelable)
     
 Here is an example of how to create a customized dialog:
 
@@ -87,7 +91,7 @@ Here is an example of how to create a customized dialog:
             setContentView(R.layout.activity_main);
         }
     }
-First all settings are set to default. The I overwrite so me of them. I want to wait 4 days instead of 3, the app should be launched only 3 times instead of 5. Furthermore I want a different title, I don't want the notNowButton (`Later`) to be displayed and I want to change the rateButton's text.
+First all settings are set to default. Then I overwrite some of them. I want to wait 4 days instead of 3, the app should be launched only 3 times instead of 5. Furthermore I want a different title, I don't want the notNowButton (`Later`) to be displayed and I want to change the rateButton's text.
 ![CustomizedDialog](ttps://imgur.com/XibDGKL.png?2 "Customized dialog")
 
 #### StarBuilder
@@ -97,11 +101,11 @@ Use the `showDefault()` again to show the default dialog displayed in the first 
 
 + change the minimum number of selected stars. If the user gives a rating matching your minimum number of stars he will be redirected to the PlayStore (default is 3)
 
-      .minimumNumberOfStars(int minimumNumberOfStars)
+      .minimumNumberOfStars(int minimumNumberOfStars) (default: 3 stars)
         
 + set an email address. If the user does not select enough stars he will be asked to send an email with suggestions (second picture above) if you set an email address. Without email address the dialog just will be dismissed if the rating is not high enough
     
-      .email(String email)
+      .email(String email) (default: null, the feedback dialog asking for suggestions will not be displayed)
     
 You only can use `.minimumNumberOfStars()` and `.email` after the constructor or `showDefault()`. It is not possible to set it after `.title()` or something. If you have a suggestion how to change this please tell me.
     
@@ -131,6 +135,7 @@ Following things are highly recommendet to not annoy the user, whic might produc
 + set the title or message adapted to your app name. This will make it look and sound better
 + set an email address if you use the StarBuilder
 + don't set minimumNumberOfStars to 5
++ you should have a good reason to making the dialog not cancelable
 
 ## Contribution
 This is my first Open Source project. If you see anything you can improve please inform me or make a pull request. If you would like to add some features you can make a pull request too.

@@ -8,4 +8,6 @@ public class Const {
 
     public static final int DEFAULT_DAYS_TO_WAIT = 3;
     public static final int DEFAULT_TIMES_TO_LAUNCH = 5;
+    public static final int DEFAULT_TIMES_TO_LAUNCH_INTERVAL = 2;
+    public static final int DEFAULT_MINIMUM_NUMBER_OF_STARS = 3;
 }
