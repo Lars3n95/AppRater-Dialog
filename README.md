@@ -22,7 +22,7 @@ You can include the library via Gradle with the following dependencie:
 
 ### Builder
 
-This library has two Builder with which you can build the AppRater-dialog.
+This library has two Builder with which you can build the AppRater-dialog. Both have the method `appLaunched()`. Call this when you want the dialog to be shown (recommended: in onCreate()). Take a look at the examples below.
 
 #### DefaultBuilder
 With this Builder you can build the default dialog with text only. You can change the texts, you can choose which buttons should be displayed, you can change the texts of the buttons and you can choose when the dialog should be shown.
@@ -134,7 +134,7 @@ Here is an example of how to create a customized dialog:
 This time I am happy with the default settings. I just want the user to select a minimum of 4 stars before he gets redirected to the Play Store. Furthermore I set the email address so the dialog shown in the second picture above will be shown if the user only select 3 or less stars.
 
 ## Recommendation
-Following things are highly recommendet to not annoy the user, whic might produce negative ratings:
+Following things are highly recommendet to not annoy the user, which might produce negative ratings:
 
 + don't show the dialog immediately after install (set daysToWait and timesToLaunch to a minimum of 1 or use showDefault())
 + don't hide the never button. If the user does not want to rate the app it is his decision, not yours. Don't force him ;)
