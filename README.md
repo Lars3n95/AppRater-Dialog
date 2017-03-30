@@ -17,13 +17,13 @@ You can show customized dialogs to the user. Here are some examples:
 ## How to use this library?
 
 ### Gradle
-You can include the library via Gradle with the following dependencie:
+You can include the library via Gradle with the following dependency:
 
      compile 'com.kila.apprater_dialog.lars:apprater-dialog:1.0.5'
 
 ### Builder
 
-This library has two Builder with which you can build the AppRater-dialog. Both have the method `appLaunched()`. Call this when you want the dialog to be shown (recommended: in `onCreate()`). Take a look at the examples below.
+This library has two Builders with which you can build the AppRater-dialog. Both have the method `appLaunched()`. Call this when you want the dialog to be shown (recommended: in `onCreate()`). Take a look at the examples below.
 
 #### DefaultBuilder
 With this Builder you can build the default dialog with text only. You can change the texts, you can choose which buttons should be displayed, you can change the texts of the buttons and you can choose when the dialog should be shown.
@@ -40,7 +40,7 @@ To show the dialog (if all conditions are fulfilled) call `appLaunched()`
     
 This will build the dialog if all conditions are fullfilled. At this moment it will create an empty screen because there is no content you gave him.
 
-If you just want to default texts and buttons like in the third picture above use `showDefault()`:
+If you just want to display default texts and buttons like in the third picture above use `showDefault()`:
 
     new AppRater.DefaultBuilder(this, "com.kila.addnotification.lars").showDefault().appLaunched();
     
@@ -76,7 +76,7 @@ Between the constructor and the `appLaunched()` you can customize the dialog. Yo
 
       .neverButton(String neverButtonText)
     
-+ change the number of launches, the app has to be launched after a `Later` till the dialog is shown again (default: 2 launches)
++ change the number of launches, the app has to be launched after a `Later` until the dialog is shown again (default: 2 launches)
 
       .timesToLaunchInterval(int timesToLaunchInterval)
     
@@ -103,7 +103,6 @@ Here is an example of how to create a customized dialog:
         }
     }
 First all settings are set to default. Then I overwrite some of them. I want to wait 4 days instead of 3, the app should be launched only 3 times instead of 5. Furthermore I want a different title, I don't want the notNowButton (`Later`) to be displayed and I want to change the rateButton's text.
-![CustomizedDialog](ttps://imgur.com/XibDGKL.png?2 "Customized dialog")
 
 #### StarBuilder
 With this Builder you can build the dialog with the stars. You can change the texts, you can choose which buttons should be displayed, you can choose when the dialog should be shown, you can choose the minimum number of stars which have to be selected to redirect to the PlayStore and you can choose if they can email you if the rating is not good enough. 
@@ -146,7 +145,7 @@ Following things are highly recommendet to not annoy the user, which might produ
 + set the title or message adapted to your app name. This will make it look and sound better
 + set an email address if you use the StarBuilder
 + don't set minimumNumberOfStars to 5
-+ you should have a good reason to making the dialog not cancelable
++ you should have a good reason to make the dialog not cancelable
 
 ## Contribution
 This is my first Open Source project. If you see anything you can improve please inform me or make a pull request. If you would like to add some features you can make a pull request too.
