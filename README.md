@@ -151,7 +151,7 @@ Following things are highly recommendet to not annoy the user, which might produ
 This is my first Open Source project. If you see anything you can improve please inform me or make a pull request. If you would like to add some features you can make a pull request too.
 
 ## License
-Copyright {2017} {Lars Fessen}
+Copyright 2017 Lars Fessen
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
