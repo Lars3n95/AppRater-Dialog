@@ -1,0 +1,18 @@
+<resources>
+    <string name="default_title">Valora la App</string>
+    <string name="default_message">Si estás disfrutando de esta App, por favor toma un momento para valorárla.\nGracias por tu ayuda!</string>
+    <string name="default_rate_button_text">Valorar</string>
+    <string name="default_not_now_button_text">Más tarde</string>
+    <string name="default_never_button_text">No, gracias</string>
+
+    <string name="star_title">Valora la App</string>
+    <string name="star_message">¿Tienes un momento?\n¿Cuánto te gusta esta App?</string>
+    <string name="star_rate_button_text">Confirmar</string>
+    <string name="star_not_now_button_text">Preguntame más tarde</string>
+    <string name="star_never_button_text">No, gracias</string>
+
+    <string name="star_title_improve_app">¿Alguna sugerencia?</string>
+    <string name="star_message_improve_app">Queremos mejorar la App con tu ayuda. ¿Quieres enviar un email con tu sugerencia?</string>
+    <string name="star_mail_improve_app">Sí</string>
+    <string name="star_cancel_improve_app">No</string>
+</resources>
