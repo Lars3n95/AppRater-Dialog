@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">AppRater-Dialog</string>
+
+    <string name="default_title">App bewerten</string>
+    <string name="default_message">Wenn dir die App gefällt, nimm dir einen Moment Zeit und bewerte sie.\nDanke für die Unterstützung!</string>
+    <string name="default_rate_button_text">Bewerten</string>
+    <string name="default_not_now_button_text">Später</string>
+    <string name="default_never_button_text">Nein, danke</string>
+
+    <string name="star_title">App bewerten</string>
+    <string name="star_message">Hast du einen Moment?\nWie sehr gefällt dir die App?</string>
+    <string name="star_rate_button_text">Bestätigen</string>
+    <string name="star_not_now_button_text">Später fragen</string>
+    <string name="star_never_button_text">Nein, danke</string>
+
+    <string name="star_title_improve_app">Verbesserungsvorschläge?</string>
+    <string name="star_message_improve_app">Wir möchten die App mit deiner Hilfe verbessern. Möchtest du eine Mail mit Verbesserungsvorschlägen senden?</string>
+    <string name="star_mail_improve_app">Ja</string>
+    <string name="star_cancel_improve_app">Nein</string>
+</resources>

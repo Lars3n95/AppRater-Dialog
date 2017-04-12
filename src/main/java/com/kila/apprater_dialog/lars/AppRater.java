@@ -6,10 +6,6 @@ import android.content.Context;
 import com.kila.apprater_dialog.lars.utils.Const;
 
 public class AppRater {
-    /**
-     * Todo: Launch intervals
-     * Todo: Stars to rate
-     */
     private static final String TAG = AppRater.class.getCanonicalName();
 
     public static class DefaultBuilder {
