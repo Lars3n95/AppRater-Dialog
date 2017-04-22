@@ -137,6 +137,22 @@ Here is an example of how to create a customized dialog:
     }
 This time I am happy with the default settings. I just want the user to select a minimum of 4 stars before he gets redirected to the Play Store. Furthermore I set the email address so the dialog shown in the second picture above will be shown if the user only select 3 or less stars.
 
+#### Orientation changes
+If the orientation is changed the `onCreate` will be called again and so the AppRater will be called, too. If you only want the AppRater to be called on "real" app launches you have to check for `savedInstanceState` :
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            if(savedInstanceState != null) {
+               new AppRater.StarBuilder(this, "com.kila.addnotification.lars")
+                         .showDefault()
+                         .minimumNumberOfStars(4)
+                         .email("myemail@nodomain.abc")
+                         .appLaunched();
+            }
+            setContentView(R.layout.activity_main);
+        }
+
 ## Recommendation
 Following things are highly recommendet to not annoy the user, which might produce negative ratings:
 
