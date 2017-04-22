@@ -1,7 +1,7 @@
 # AppRater-Dialog
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppRater--Dialog-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5449)
-[![Download](https://api.bintray.com/packages/lars3n95/maven/apprater-dialog/images/download.svg)](https://bintray.com/lars3n95/maven/apprater-dialog/1.0.8)
+[ ![Download](https://api.bintray.com/packages/lars3n95/maven/apprater-dialog/images/download.svg?version=1.1.0) ](https://bintray.com/lars3n95/maven/apprater-dialog/1.1.0/link)
 
 An Android library providing the possibility to show a dialog, which asks the user to rate the app.
 
@@ -49,8 +49,13 @@ With this settings the dialog will be shown if the following conditions are fulf
 Between the constructor and the `appLaunched()` you can customize the dialog. You have following possibilities:
 
 + change the number of days, the app has to be installed (default: 3 days)
+**DEPRECATED** use `timeToWait()` instead
 
       .daysToWait(int daysToWait)
+      
++ change the time, the app has to be installed (default: 3 days) (documentation for [TimeUnit](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html))
+
+      .timeToWait(TimeUnit timeUnit, long timeToWait)
 
 + change the number of launches, the app has to be launched (default: 5 launches)
 
@@ -93,7 +98,7 @@ Here is an example of how to create a customized dialog:
             super.onCreate(savedInstanceState);
             new AppRater.DefaultBuilder(this, "com.kila.addnotification.lars")
                     .showDefault()
-                    .daysToWait(4)
+                    .timeToWait(TimeUnit.DAYS, 4)
                     .timesToLaunch(3)
                     .title("Rate Notify me")
                     .notNowButton(null)
@@ -156,7 +161,7 @@ If the orientation is changed the `onCreate` will be called again and so the App
 ## Recommendation
 Following things are highly recommendet to not annoy the user, which might produce negative ratings:
 
-+ don't show the dialog immediately after install (set daysToWait and timesToLaunch to a minimum of 1 or use showDefault())
++ don't show the dialog immediately after install (set timeToWait and timesToLaunch to a minimum of 1 (day) or use showDefault())
 + don't hide the never button. If the user does not want to rate the app it is his decision, not yours. Don't force him ;)
 + set the title or message adapted to your app name. This will make it look and sound better
 + set an email address if you use the StarBuilder
