@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 import com.kila.apprater_dialog.lars.utils.Const;
 
+import java.util.concurrent.TimeUnit;
+
 public class ConditionManager {
 
     private final Context context;
@@ -30,8 +32,14 @@ public class ConditionManager {
      *
      * @return if the dialog should be shown
      */
-    boolean conditionsFulfilled(int daysToWait, int timesToLaunch, int timesToLaunchInterval) {
-        return daysToWaitReached(daysToWait) && timesToLaunchReached(timesToLaunch, timesToLaunchInterval) && showDialog();
+    boolean conditionsFulfilled(int daysToWait, TimeUnit timeUnit, long timeToWait, int timesToLaunch, int timesToLaunchInterval) {
+        if (timeUnit != null) {
+            // TimeToWait set
+            return timeToWaitReached(timeUnit, timeToWait) && timesToLaunchReached(timesToLaunch, timesToLaunchInterval) && showDialog();
+        } else {
+            // DaysToWait set
+            return daysToWaitReached(daysToWait) && timesToLaunchReached(timesToLaunch, timesToLaunchInterval) && showDialog();
+        }
     }
 
     /**
@@ -39,10 +47,17 @@ public class ConditionManager {
      *
      * @param daysToWait number of days to wait
      * @return if the number of days is reached
+     * @deprecated Use timeToWaitReached() instead
      */
+    @Deprecated
     private boolean daysToWaitReached(int daysToWait) {
         long firstLaunchDay = context.getSharedPreferences(Const.SHARED_PREFERENCES, 0).getLong(Const.SHARED_PREFERENCES_DAYS, -1);
         return firstLaunchDay != -1 && System.currentTimeMillis() >= (firstLaunchDay + (daysToWait * 24 * 60 * 60 * 1000));
+    }
+
+    private boolean timeToWaitReached(TimeUnit timeUnit, long timeToWait) {
+        long firstLaunchDay = context.getSharedPreferences(Const.SHARED_PREFERENCES, 0).getLong(Const.SHARED_PREFERENCES_DAYS, -1);
+        return firstLaunchDay != -1 && System.currentTimeMillis() >= (firstLaunchDay + TimeUnit.MILLISECONDS.convert(timeToWait, timeUnit));
     }
 
     /**

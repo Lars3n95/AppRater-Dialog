@@ -5,6 +5,8 @@ import android.content.Context;
 
 import com.kila.apprater_dialog.lars.utils.Const;
 
+import java.util.concurrent.TimeUnit;
+
 public class AppRater {
     private static final String TAG = AppRater.class.getCanonicalName();
 
@@ -13,6 +15,8 @@ public class AppRater {
         protected final String packageName;
 
         protected int daysToWait;
+        protected TimeUnit timeUnit;
+        protected long timeToWait;
         protected int timesToLaunch;
         protected String title;
         protected String message;
@@ -28,7 +32,7 @@ public class AppRater {
         }
 
         public DefaultBuilder showDefault() {
-            daysToWait(Const.DEFAULT_DAYS_TO_WAIT);
+            timeToWait(Const.DEFAULT_TIME_UNIT, Const.DEFAULT_DAYS_TO_WAIT);
             timesToLaunch(Const.DEFAULT_TIMES_TO_LAUNCH);
             title(context.getString(R.string.default_title));
             message(context.getString(R.string.default_message));
@@ -40,8 +44,19 @@ public class AppRater {
             return this;
         }
 
+        /**
+         *
+         * @deprecated use timeToWait(TimeUnit, long) instead, for example: timeToWait(TimeUnit.DAYS, 3)
+         */
+        @Deprecated
         public DefaultBuilder daysToWait(int daysToWait) {
             this.daysToWait = daysToWait;
+            return this;
+        }
+
+        public DefaultBuilder timeToWait(TimeUnit timeUnit, long timeToWait) {
+            this.timeUnit = timeUnit;
+            this.timeToWait = timeToWait;
             return this;
         }
 
@@ -92,7 +107,7 @@ public class AppRater {
          */
         public boolean appLaunched() {
             ConditionManager conditionManager = new ConditionManager(context);
-            if (conditionManager.conditionsFulfilled(daysToWait, timesToLaunch, timesToLaunchInterval)) {
+            if (conditionManager.conditionsFulfilled(daysToWait, timeUnit, timeToWait, timesToLaunch, timesToLaunchInterval)) {
                 showAppRaterDialog();
                 conditionManager.refreshConditions();
                 return true;
@@ -102,11 +117,10 @@ public class AppRater {
             }
         }
 
-        protected AlertDialog showAppRaterDialog() {
+        protected void showAppRaterDialog() {
             AppRaterDialog.Builder builder = buildAppRaterDialog();
             AlertDialog dialog = builder.create();
             builder.show();
-            return dialog;
         }
 
         protected AppRaterDialog.Builder buildAppRaterDialog() {
