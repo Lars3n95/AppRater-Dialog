@@ -144,6 +144,10 @@ public class AppRater {
         private boolean showStars = true;
         private int minimumNumberOfStars;
         private String email;
+        private String lowRateTitle;
+        private String lowRateMessage;
+        private String lowRateEmailButton;
+        private String lowRateDismissButton;
 
         public StarBuilder(Context context, String packageName) {
             super(context, packageName);
@@ -171,6 +175,26 @@ public class AppRater {
             return this;
         }
 
+        public StarBuilder lowRateTitle(String lowRateTitle) {
+            this.lowRateTitle = lowRateTitle;
+            return this;
+        }
+
+        public StarBuilder lowRateMessage(String lowRateMessage) {
+            this.lowRateMessage = lowRateMessage;
+            return this;
+        }
+
+        public StarBuilder lowRateEmailButton(String lowRateEmailButton) {
+            this.lowRateEmailButton = lowRateEmailButton;
+            return this;
+        }
+
+        public StarBuilder lowRateDismissButton(String lowRateDismissButton) {
+            this.lowRateDismissButton = lowRateDismissButton;
+            return this;
+        }
+
         @Override
         protected AppRaterDialog.Builder buildAppRaterDialog() {
             AppRaterDialog.Builder builder = new AppRaterDialog.Builder(context);
@@ -191,6 +215,14 @@ public class AppRater {
                 builder.showStars();
             if (email != null)
                 builder.setEmail(email);
+            if(lowRateTitle != null)
+                builder.setLowRateTitle(lowRateTitle);
+            if(lowRateMessage != null)
+                builder.setLowRateMessage(lowRateMessage);
+            if(lowRateEmailButton != null)
+                builder.setLowRateEmailButton(lowRateEmailButton);
+            if(lowRateDismissButton != null)
+                builder.setLowRateDismissButton(lowRateDismissButton);
             builder.setCancelable(cancelable);
             return builder;
         }
