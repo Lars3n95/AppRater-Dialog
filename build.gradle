@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/Lars3n95/AppRater-Dialog'
     gitUrl = 'https://github.com/Lars3n95/AppRater-Dialog.git'
 
-    libraryVersion = '1.1.0'
+    libraryVersion = '1.2.0'
 
     developerId = 'lars3n95'
     developerName = 'Lars'
