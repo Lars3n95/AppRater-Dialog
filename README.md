@@ -1,7 +1,7 @@
 # AppRater-Dialog
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppRater--Dialog-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5449)
-[ ![Download](https://api.bintray.com/packages/lars3n95/maven/apprater-dialog/images/download.svg?version=1.1.0) ](https://bintray.com/lars3n95/maven/apprater-dialog/1.1.0/link)
+ [ ![Download](https://api.bintray.com/packages/lars3n95/maven/apprater-dialog/images/download.svg) ](https://bintray.com/lars3n95/maven/apprater-dialog/_latestVersion)
 
 An Android library providing the possibility to show a dialog, which asks the user to rate the app.
 
