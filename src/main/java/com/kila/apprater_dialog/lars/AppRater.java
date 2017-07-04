@@ -125,6 +125,7 @@ public class AppRater {
 
         protected AppRaterDialog.Builder buildAppRaterDialog() {
             AppRaterDialog.Builder builder = new AppRaterDialog.Builder(context);
+            builder.setPackageName(packageName);
             if (title != null)
                 builder.setTitle(title);
             if (message != null)
