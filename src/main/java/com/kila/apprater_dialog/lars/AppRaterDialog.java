@@ -1,6 +1,7 @@
 package com.kila.apprater_dialog.lars;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -134,7 +135,11 @@ public class AppRaterDialog extends AlertDialog {
             }
 
             private void openPlayStore(String packageName) {
-                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName)));
+                try {
+                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName)));
+                } catch (ActivityNotFoundException e){
+                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + packageName)));
+                }
             }
         }
     }
